@@ -1,0 +1,1302 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Portal | Kingdome College Hub</title>
+
+<style>
+:root {
+    --navy: #123B50;
+    --dark: #0B293B;
+    --teal: #087E83;
+    --mint: #E9F5F4;
+    --gold: #C6A45C;
+    --white: #FFFFFF;
+    --text: #344650;
+    --muted: #71818A;
+    --light: #F5F8F9;
+    --border: #E2E9EC;
+    --red: #B84D4D;
+    --green: #347B58;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--light);
+    color: var(--text);
+    line-height: 1.5;
+}
+
+button, input {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* LOGIN PAGE */
+
+.login-page {
+    min-height: 100vh;
+    display: flex;
+    background: var(--dark);
+}
+
+.login-left {
+    flex: 1.2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8%;
+    color: var(--white);
+    background:
+        radial-gradient(circle at 85% 20%, rgba(8,126,131,.3), transparent 30%),
+        linear-gradient(140deg, #0B293B, #123B50);
+}
+
+.login-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 65px;
+}
+
+.brand-mark {
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+    background: var(--teal);
+    border-bottom: 3px solid var(--gold);
+    border-radius: 8px;
+    font-size: 27px;
+    font-weight: bold;
+}
+
+.brand-name strong {
+    display: block;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+.brand-name small {
+    color: #A9D8D4;
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+.login-left h1 {
+    font-size: clamp(34px, 5vw, 54px);
+    line-height: 1.15;
+    margin-bottom: 20px;
+}
+
+.login-left h1 span {
+    color: #8ED0CB;
+}
+
+.login-left p {
+    max-width: 470px;
+    color: #D4E2E7;
+    font-size: 15px;
+}
+
+.login-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 35px;
+}
+
+.login-features span {
+    padding: 8px 12px;
+    border: 1px solid rgba(255,255,255,.25);
+    border-radius: 5px;
+    font-size: 11px;
+    color: #DDEBED;
+}
+
+.login-right {
+    flex: .8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 35px;
+    background: var(--white);
+}
+
+.login-card {
+    width: 100%;
+    max-width: 390px;
+}
+
+.login-card h2 {
+    color: var(--navy);
+    font-size: 27px;
+    margin-bottom: 7px;
+}
+
+.login-card > p {
+    color: var(--muted);
+    font-size: 13px;
+    margin-bottom: 28px;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 12px;
+    font-weight: bold;
+    color: var(--navy);
+}
+
+.form-group input {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    outline: none;
+    background: #FBFCFC;
+}
+
+.form-group input:focus {
+    border-color: var(--teal);
+}
+
+.login-button {
+    width: 100%;
+    border: 0;
+    padding: 14px;
+    border-radius: 5px;
+    color: var(--white);
+    background: var(--teal);
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.login-button:hover {
+    background: var(--navy);
+}
+
+.login-message {
+    color: var(--red);
+    font-size: 12px;
+    margin-top: 12px;
+}
+
+.login-help {
+    text-align: center;
+    margin-top: 22px;
+    font-size: 11px;
+    color: var(--muted);
+}
+
+.back-home {
+    display: inline-block;
+    margin-top: 25px;
+    font-size: 12px;
+    color: var(--teal);
+    font-weight: bold;
+}
+
+/* DASHBOARD */
+
+.dashboard {
+    min-height: 100vh;
+}
+
+.topbar {
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.topbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--navy);
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.topbar-brand .brand-mark {
+    width: 36px;
+    height: 36px;
+    font-size: 20px;
+}
+
+.topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.student-name {
+    font-size: 12px;
+    font-weight: bold;
+    color: var(--navy);
+}
+
+.logout-button {
+    padding: 8px 13px;
+    border: 1px solid var(--border);
+    background: var(--white);
+    color: var(--red);
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.dashboard-layout {
+    display: flex;
+    min-height: calc(100vh - 70px);
+}
+
+.sidebar {
+    width: 235px;
+    flex-shrink: 0;
+    padding: 25px 14px;
+    background: var(--navy);
+    color: var(--white);
+}
+
+.sidebar-label {
+    padding: 0 12px;
+    margin: 10px 0 13px;
+    color: #AFC6CE;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+}
+
+.side-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 5px;
+    border: 0;
+    border-radius: 5px;
+    background: transparent;
+    color: #E1EBEE;
+    text-align: left;
+    font-size: 12px;
+}
+
+.side-link:hover,
+.side-link.active {
+    background: var(--teal);
+    color: var(--white);
+}
+
+.side-icon {
+    width: 20px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.main-content {
+    flex: 1;
+    min-width: 0;
+    padding: 30px;
+}
+
+.page-section {
+    display: none;
+}
+
+.page-section.active {
+    display: block;
+}
+
+.page-heading {
+    margin-bottom: 24px;
+}
+
+.page-heading h1 {
+    color: var(--navy);
+    font-size: 25px;
+    margin-bottom: 5px;
+}
+
+.page-heading p {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+/* DASHBOARD CARDS */
+
+.welcome-banner {
+    padding: 25px;
+    margin-bottom: 22px;
+    color: var(--white);
+    border-radius: 8px;
+    background: linear-gradient(110deg, var(--navy), var(--teal));
+}
+
+.welcome-banner span {
+    color: #C9E8E5;
+    font-size: 11px;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+.welcome-banner h2 {
+    margin: 8px 0;
+    font-size: 24px;
+}
+
+.welcome-banner p {
+    font-size: 12px;
+    color: #E0F1EF;
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.summary-card {
+    padding: 18px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+}
+
+.summary-card span {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.summary-card h3 {
+    color: var(--navy);
+    font-size: 25px;
+    margin-top: 8px;
+}
+
+.content-card {
+    padding: 22px;
+    margin-bottom: 20px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+}
+
+.content-card h3 {
+    color: var(--navy);
+    font-size: 15px;
+    margin-bottom: 15px;
+}
+
+.empty-state {
+    padding: 28px 15px;
+    text-align: center;
+    color: var(--muted);
+    background: #FAFCFC;
+    border: 1px dashed #C9D7DC;
+    border-radius: 6px;
+    font-size: 12px;
+}
+
+.empty-state strong {
+    display: block;
+    color: var(--navy);
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+
+/* ASSIGNMENTS AND MATERIALS */
+
+.resource-list {
+    display: grid;
+    gap: 12px;
+}
+
+.resource-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--white);
+}
+
+.resource-item h4 {
+    color: var(--navy);
+    font-size: 13px;
+    margin-bottom: 4px;
+}
+
+.resource-item p {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.resource-tag {
+    display: inline-block;
+    padding: 4px 8px;
+    margin-top: 7px;
+    border-radius: 4px;
+    background: var(--mint);
+    color: var(--teal);
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.small-button {
+    padding: 8px 12px;
+    border: 0;
+    border-radius: 4px;
+    background: var(--teal);
+    color: var(--white);
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.small-button:hover {
+    background: var(--navy);
+}
+
+.upload-box {
+    padding: 20px;
+    margin-top: 18px;
+    border: 1px dashed #AFC4CA;
+    background: #FAFCFC;
+    border-radius: 6px;
+}
+
+.upload-box h4 {
+    color: var(--navy);
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.upload-box input {
+    width: 100%;
+    font-size: 12px;
+    margin-bottom: 12px;
+}
+
+.upload-status {
+    margin-top: 10px;
+    color: var(--green);
+    font-size: 11px;
+}
+
+/* TABLES */
+
+.table-wrap {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 500px;
+}
+
+th, td {
+    padding: 13px 12px;
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+    font-size: 11px;
+}
+
+th {
+    color: var(--navy);
+    background: #F5F8F9;
+}
+
+td {
+    color: var(--text);
+}
+
+/* PROFILE */
+
+.profile-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.profile-field {
+    padding: 14px;
+    background: #FAFCFC;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+}
+
+.profile-field small {
+    display: block;
+    color: var(--muted);
+    font-size: 10px;
+    margin-bottom: 5px;
+}
+
+.profile-field strong {
+    color: var(--navy);
+    font-size: 12px;
+}
+
+/* FOOTER */
+
+.dashboard-footer {
+    padding: 20px 0;
+    color: var(--muted);
+    font-size: 10px;
+    text-align: center;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+    .summary-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .sidebar {
+        width: 195px;
+    }
+
+    .main-content {
+        padding: 22px;
+    }
+}
+
+@media (max-width: 650px) {
+    .login-page {
+        flex-direction: column;
+    }
+
+    .login-left {
+        padding: 30px 7%;
+    }
+
+    .login-brand {
+        margin-bottom: 30px;
+    }
+
+    .login-left h1 {
+        font-size: 34px;
+    }
+
+    .login-features {
+        margin-top: 20px;
+    }
+
+    .login-right {
+        padding: 35px 7%;
+    }
+
+    .topbar {
+        height: auto;
+        min-height: 65px;
+        padding: 12px 15px;
+    }
+
+    .topbar-brand {
+        font-size: 11px;
+    }
+
+    .student-name {
+        display: none;
+    }
+
+    .dashboard-layout {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        display: flex;
+        gap: 5px;
+        overflow-x: auto;
+        padding: 10px;
+    }
+
+    .sidebar-label {
+        display: none;
+    }
+
+    .side-link {
+        flex: 0 0 auto;
+        width: auto;
+        margin: 0;
+        padding: 10px;
+        font-size: 10px;
+    }
+
+    .side-icon {
+        display: none;
+    }
+
+    .main-content {
+        padding: 18px 13px;
+    }
+
+    .summary-grid {
+        gap: 9px;
+    }
+
+    .summary-card {
+        padding: 13px;
+    }
+
+    .summary-card h3 {
+        font-size: 21px;
+    }
+
+    .page-heading h1 {
+        font-size: 22px;
+    }
+
+    .profile-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .resource-item {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN PAGE -->
+<section class="login-page" id="loginPage">
+
+    <div class="login-left">
+
+        <div class="login-brand">
+            <div class="brand-mark">K</div>
+            <div class="brand-name">
+                <strong>KINGDOME</strong>
+                <small>COLLEGE HUB</small>
+            </div>
+        </div>
+
+        <h1>Welcome to Your<br><span>Student Portal.</span></h1>
+
+        <p>
+            Your central place for academic information, assignments,
+            learning materials, examination results and student services.
+        </p>
+
+        <div class="login-features">
+            <span>Academic Services</span>
+            <span>Assignments</span>
+            <span>Learning Materials</span>
+        </div>
+
+    </div>
+
+    <div class="login-right">
+
+        <form class="login-card" id="loginForm">
+
+            <h2>Student Login</h2>
+            <p>Sign in to access your student dashboard.</p>
+
+            <div class="form-group">
+                <label for="studentId">Registration Number</label>
+                <input
+                    type="text"
+                    id="studentId"
+                    placeholder="Enter your registration number"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Enter your password"
+                    required
+                >
+            </div>
+
+            <button type="submit" class="login-button">
+                LOG IN TO STUDENT PORTAL
+            </button>
+
+            <p class="login-message" id="loginMessage"></p>
+
+            <div class="login-help">
+                For login assistance, contact the college administration.
+            </div>
+
+            <a href="index.html" class="back-home">← Back to College Homepage</a>
+
+        </form>
+
+    </div>
+
+</section>
+
+
+<!-- STUDENT DASHBOARD -->
+<div class="dashboard hidden" id="dashboardPage">
+
+    <header class="topbar">
+
+        <div class="topbar-brand">
+            <div class="brand-mark">K</div>
+            KINGDOME COLLEGE HUB
+        </div>
+
+        <div class="topbar-right">
+            <span class="student-name" id="topStudentName">Student</span>
+            <button class="logout-button" id="logoutButton">LOG OUT</button>
+        </div>
+
+    </header>
+
+
+    <div class="dashboard-layout">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+
+            <div class="sidebar-label">STUDENT MENU</div>
+
+            <button class="side-link active" data-page="home">
+                <span class="side-icon">⌂</span> Dashboard
+            </button>
+
+            <button class="side-link" data-page="assignments">
+                <span class="side-icon">▤</span> Assignments
+            </button>
+
+            <button class="side-link" data-page="materials">
+                <span class="side-icon">▣</span> Learning Materials
+            </button>
+
+            <button class="side-link" data-page="courses">
+                <span class="side-icon">▥</span> My Courses
+            </button>
+
+            <button class="side-link" data-page="timetable">
+                <span class="side-icon">▦</span> Timetable
+            </button>
+
+            <button class="side-link" data-page="results">
+                <span class="side-icon">✓</span> Examination Results
+            </button>
+
+            <button class="side-link" data-page="fees">
+                <span class="side-icon">◇</span> Fees
+            </button>
+
+            <button class="side-link" data-page="profile">
+                <span class="side-icon">♙</span> My Profile
+            </button>
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+
+
+            <!-- DASHBOARD HOME -->
+            <section class="page-section active" id="page-home">
+
+                <div class="welcome-banner">
+                    <span>STUDENT DASHBOARD</span>
+                    <h2>Welcome, <span id="welcomeName">Student</span>!</h2>
+                    <p>
+                        Stay updated with your academic activities and college information.
+                    </p>
+                </div>
+
+                <div class="summary-grid">
+
+                    <div class="summary-card">
+                        <span>My Courses</span>
+                        <h3>--</h3>
+                    </div>
+
+                    <div class="summary-card">
+                        <span>Pending Assignments</span>
+                        <h3>--</h3>
+                    </div>
+
+                    <div class="summary-card">
+                        <span>Learning Materials</span>
+                        <h3>--</h3>
+                    </div>
+
+                    <div class="summary-card">
+                        <span>Fee Balance</span>
+                        <h3>--</h3>
+                    </div>
+
+                </div>
+
+                <div class="content-card">
+                    <h3>Recent Announcements</h3>
+                    <div class="empty-state">
+                        <strong>No announcements yet</strong>
+                        College announcements will appear here when published.
+                    </div>
+                </div>
+
+                <div class="content-card">
+                    <h3>Upcoming Academic Activities</h3>
+                    <div class="empty-state">
+                        <strong>No activities have been published</strong>
+                        Class schedules, examinations and other activities will appear here.
+                    </div>
+                </div>
+
+            </section>
+
+
+            <!-- ASSIGNMENTS -->
+            <section class="page-section" id="page-assignments">
+
+                <div class="page-heading">
+                    <h1>Assignments</h1>
+                    <p>Receive assignments from lecturers and submit your completed work.</p>
+                </div>
+
+                <div class="content-card">
+                    <h3>Assignments Received</h3>
+
+                    <div class="empty-state">
+                        <strong>No assignments available yet</strong>
+                        Assignments uploaded by academic staff will appear here.
+                    </div>
+                </div>
+
+                <div class="content-card">
+                    <h3>Submit Your Assignment</h3>
+
+                    <p style="font-size:12px;color:#71818A;margin-bottom:15px;">
+                        Select the assignment and attach your completed file.
+                    </p>
+
+                    <form id="assignmentForm">
+
+                        <div class="form-group">
+                            <label for="assignmentTitle">Assignment Title</label>
+                            <input
+                                type="text"
+                                id="assignmentTitle"
+                                placeholder="Enter assignment title"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="assignmentFile">Choose Assignment File</label>
+                            <input
+                                type="file"
+                                id="assignmentFile"
+                                accept=".pdf,.doc,.docx,.ppt,.pptx"
+                                required
+                            >
+                        </div>
+
+                        <button type="submit" class="small-button">
+                            SUBMIT ASSIGNMENT
+                        </button>
+
+                        <p class="upload-status" id="assignmentStatus"></p>
+
+                    </form>
+                </div>
+
+                <div class="content-card">
+                    <h3>My Submission Activity</h3>
+                    <div id="submissionList" class="empty-state">
+                        <strong>No submissions recorded</strong>
+                        Your submission activity will appear here.
+                    </div>
+                </div>
+
+            </section>
+
+
+            <!-- LEARNING MATERIALS -->
+            <section class="page-section" id="page-materials">
+
+                <div class="page-heading">
+                    <h1>Learning Materials</h1>
+                    <p>Access notes, lecture slides, PDFs and other study resources.</p>
+                </div>
+
+                <div class="content-card">
+                    <h3>Materials From Academic Staff</h3>
+
+                    <div class="empty-state">
+                        <strong>No learning materials uploaded yet</strong>
+                        Notes, lecture handouts, presentations and reading materials
+                        uploaded by academic staff will appear here for students to access.
+                    </div>
+                </div>
+
+                <div class="content-card">
+                    <h3>Available Resource Categories</h3>
+
+                    <div class="resource-list">
+
+                        <div class="resource-item">
+                            <div>
+                                <h4>Lecture Notes</h4>
+                                <p>Course notes and classroom handouts.</p>
+                                <span class="resource-tag">PDF / DOCUMENTS</span>
+                            </div>
+                        </div>
+
+                        <div class="resource-item">
+                            <div>
+                                <h4>Presentation Slides</h4>
+                                <p>Teaching presentations and lecture slides.</p>
+                                <span class="resource-tag">POWERPOINT / PDF</span>
+                            </div>
+                        </div>
+
+                        <div class="resource-item">
+                            <div>
+                                <h4>Reference Materials</h4>
+                                <p>Recommended readings and supplementary resources.</p>
+                                <span class="resource-tag">STUDY RESOURCES</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </section>
+
+
+            <!-- COURSES -->
+            <section class="page-section" id="page-courses">
+
+                <div class="page-heading">
+                    <h1>My Courses</h1>
+                    <p>View your registered courses and subjects.</p>
+                </div>
+
+                <div class="content-card">
+                    <div class="empty-state">
+                        <strong>No courses registered yet</strong>
+                        Your registered courses will be displayed here.
+                    </div>
+                </div>
+
+            </section>
+
+
+            <!-- TIMETABLE -->
+            <section class="page-section" id="page-timetable">
+
+                <div class="page-heading">
+                    <h1>Class Timetable</h1>
+                    <p>View your weekly lectures and academic schedule.</p>
+                </div>
+
+                <div class="content-card">
+                    <div class="empty-state">
+                        <strong>Timetable not available yet</strong>
+                        Your class timetable will appear here after publication.
+                    </div>
+                </div>
+
+            </section>
+
+
+            <!-- RESULTS -->
+            <section class="page-section" id="page-results">
+
+                <div class="page-heading">
+                    <h1>Examination Results</h1>
+                    <p>View your academic performance and examination results.</p>
+                </div>
+
+                <div class="content-card">
+                    <div class="empty-state">
+                        <strong>No examination results published</strong>
+                        Your approved examination results will appear here.
+                    </div>
+                </div>
+
+            </section>
+
+
+            <!-- FEES -->
+            <section class="page-section" id="page-fees">
+
+                <div class="page-heading">
+                    <h1>Student Fees</h1>
+                    <p>View your fee information and payment records.</p>
+                </div>
+
+                <div class="summary-grid">
+
+                    <div class="summary-card">
+                        <span>Total Fees</span>
+                        <h3>--</h3>
+                    </div>
+
+                    <div class="summary-card">
+                        <span>Amount Paid</span>
+                        <h3>--</h3>
+                    </div>
+
+                    <div class="summary-card">
+                        <span>Outstanding Balance</span>
+                        <h3>--</h3>
+                    </div>
+
+                    <div class="summary-card">
+                        <span>Payment Status</span>
+                        <h3>--</h3>
+                    </div>
+
+                </div>
+
+                <div class="content-card">
+                    <h3>Payment History</h3>
+                    <div class="empty-state">
+                        <strong>No payment records available</strong>
+                        Your verified payment information will appear here.
+                    </div>
+                </div>
+
+            </section>
+
+
+            <!-- PROFILE -->
+            <section class="page-section" id="page-profile">
+
+                <div class="page-heading">
+                    <h1>My Student Profile</h1>
+                    <p>View your student identification information.</p>
+                </div>
+
+                <div class="content-card">
+
+                    <div class="profile-grid">
+
+                        <div class="profile-field">
+                            <small>Student Name</small>
+                            <strong id="profileName">Not provided</strong>
+                        </div>
+
+                        <div class="profile-field">
+                            <small>Registration Number</small>
+                            <strong id="profileId">Not provided</strong>
+                        </div>
+
+                        <div class="profile-field">
+                            <small>Programme</small>
+                            <strong>To be assigned</strong>
+                        </div>
+
+                        <div class="profile-field">
+                            <small>Academic Year</small>
+                            <strong>To be assigned</strong>
+                        </div>
+
+                        <div class="profile-field">
+                            <small>Year of Study</small>
+                            <strong>To be assigned</strong>
+                        </div>
+
+                        <div class="profile-field">
+                            <small>Student Status</small>
+                            <strong>To be confirmed</strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <footer class="dashboard-footer">
+                © 2026 Kingdome College Hub. Student Portal.
+            </footer>
+
+        </main>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* DEMONSTRATION LOGIN ONLY */
+
+const loginForm = document.getElementById("loginForm");
+const loginPage = document.getElementById("loginPage");
+const dashboardPage = document.getElementById("dashboardPage");
+const loginMessage = document.getElementById("loginMessage");
+
+loginForm.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    const studentId = document.getElementById("studentId").value.trim();
+    const password = document.getElementById("password").value.trim();
+
+    if (!studentId || !password) {
+        loginMessage.textContent = "Please enter your registration number and password.";
+        return;
+    }
+
+    const studentName = studentId;
+
+    document.getElementById("welcomeName").textContent = studentName;
+    document.getElementById("topStudentName").textContent = studentName;
+    document.getElementById("profileName").textContent = studentName;
+    document.getElementById("profileId").textContent = studentId;
+
+    loginPage.classList.add("hidden");
+    dashboardPage.classList.remove("hidden");
+
+    showPage("home");
+
+});
+
+
+/* DASHBOARD NAVIGATION */
+
+const navigationButtons = document.querySelectorAll(".side-link");
+
+navigationButtons.forEach(function(button) {
+
+    button.addEventListener("click", function() {
+
+        const page = button.getAttribute("data-page");
+
+        showPage(page);
+
+    });
+
+});
+
+
+function showPage(pageName) {
+
+    document.querySelectorAll(".page-section").forEach(function(section) {
+        section.classList.remove("active");
+    });
+
+    document.getElementById("page-" + pageName).classList.add("active");
+
+    navigationButtons.forEach(function(button) {
+        button.classList.remove("active");
+
+        if (button.getAttribute("data-page") === pageName) {
+            button.classList.add("active");
+        }
+    });
+
+}
+
+
+/* LOG OUT */
+
+document.getElementById("logoutButton").addEventListener("click", function() {
+
+    dashboardPage.classList.add("hidden");
+    loginPage.classList.remove("hidden");
+
+    loginForm.reset();
+    loginMessage.textContent = "";
+
+});
+
+
+/* ASSIGNMENT SUBMISSION DEMONSTRATION */
+
+const assignmentForm = document.getElementById("assignmentForm");
+const assignmentStatus = document.getElementById("assignmentStatus");
+const submissionList = document.getElementById("submissionList");
+
+assignmentForm.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    const title = document.getElementById("assignmentTitle").value.trim();
+    const file = document.getElementById("assignmentFile").files[0];
+
+    if (!title || !file) {
+        assignmentStatus.textContent = "Please enter the title and select a file.";
+        return;
+    }
+
+    submissionList.className = "resource-list";
+
+    const item = document.createElement("div");
+    item.className = "resource-item";
+
+    const details = document.createElement("div");
+
+    const heading = document.createElement("h4");
+    heading.textContent = title;
+
+    const description = document.createElement("p");
+    description.textContent = "Selected file: " + file.name;
+
+    const tag = document.createElement("span");
+    tag.className = "resource-tag";
+    tag.textContent = "LOCAL DEMO ONLY";
+
+    details.appendChild(heading);
+    details.appendChild(description);
+    details.appendChild(tag);
+
+    item.appendChild(details);
+    submissionList.appendChild(item);
+
+    assignmentStatus.textContent =
+        "File selected successfully. This demonstration does not send it to the college.";
+
+    assignmentForm.reset();
+
+});
+
+</script>
+
+</body>
+</html>
