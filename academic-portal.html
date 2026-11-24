@@ -1,0 +1,561 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Academic Portal | Kingdome College Hub</title>
+
+<style>
+:root {
+  --navy:#123B50;
+  --dark:#0B293B;
+  --teal:#087E83;
+  --mint:#E9F5F4;
+  --gold:#C6A45C;
+  --white:#ffffff;
+  --light:#f4f7f9;
+  --text:#263746;
+}
+
+* { box-sizing:border-box; }
+
+body {
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:var(--light);
+  color:var(--text);
+}
+
+header {
+  background:var(--dark);
+  color:white;
+  padding:18px 6%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+header h2 {
+  margin:0;
+  font-size:21px;
+}
+
+header span {
+  color:#d9c28d;
+  font-size:13px;
+}
+
+.login-wrapper {
+  min-height:85vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:25px;
+}
+
+.login-box {
+  background:white;
+  width:100%;
+  max-width:420px;
+  padding:35px;
+  border-radius:12px;
+  box-shadow:0 5px 25px #00000012;
+}
+
+h1,h2,h3 { color:var(--navy); }
+
+.login-box h2 { text-align:center; }
+
+.login-box p {
+  text-align:center;
+  color:#687985;
+  font-size:14px;
+}
+
+input, select, textarea {
+  width:100%;
+  padding:12px;
+  margin:8px 0 16px;
+  border:1px solid #d6e0e5;
+  border-radius:6px;
+  font-size:14px;
+}
+
+button {
+  background:var(--teal);
+  color:white;
+  border:0;
+  padding:12px 18px;
+  border-radius:6px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+button:hover { opacity:.9; }
+
+.login-box button { width:100%; }
+
+.dashboard {
+  display:none;
+  min-height:85vh;
+}
+
+.sidebar {
+  width:245px;
+  background:var(--navy);
+  color:white;
+  position:fixed;
+  top:72px;
+  bottom:0;
+  left:0;
+  padding:25px 15px;
+  overflow-y:auto;
+}
+
+.sidebar h3 {
+  color:white;
+  padding-left:12px;
+  font-size:16px;
+}
+
+.sidebar button {
+  display:block;
+  width:100%;
+  text-align:left;
+  margin:7px 0;
+  background:transparent;
+  color:white;
+  font-weight:normal;
+}
+
+.sidebar button:hover,
+.sidebar button.active {
+  background:var(--teal);
+}
+
+.main {
+  margin-left:245px;
+  padding:30px;
+}
+
+.welcome {
+  background:linear-gradient(120deg,var(--navy),var(--teal));
+  color:white;
+  padding:27px;
+  border-radius:12px;
+  margin-bottom:25px;
+}
+
+.welcome h1 { color:white; margin-top:0; }
+
+.cards {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:18px;
+  margin-bottom:25px;
+}
+
+.card {
+  background:white;
+  padding:22px;
+  border-radius:10px;
+  box-shadow:0 3px 12px #00000008;
+}
+
+.card h3 { margin:0 0 12px; }
+
+.card strong {
+  font-size:27px;
+  color:var(--teal);
+}
+
+.panel {
+  display:none;
+  background:white;
+  padding:25px;
+  border-radius:10px;
+  margin-top:20px;
+  box-shadow:0 3px 12px #00000008;
+}
+
+.panel.active { display:block; }
+
+.panel h2 { margin-top:0; }
+
+.small-note {
+  color:#71808b;
+  font-size:13px;
+  line-height:1.6;
+}
+
+.item {
+  padding:13px;
+  background:var(--mint);
+  border-radius:7px;
+  margin:10px 0;
+}
+
+footer {
+  background:var(--dark);
+  color:white;
+  text-align:center;
+  padding:17px;
+  font-size:13px;
+}
+
+@media(max-width:750px) {
+  header { padding:16px 5%; }
+  .sidebar {
+    position:static;
+    width:100%;
+    padding:12px;
+  }
+  .sidebar button {
+    display:inline-block;
+    width:auto;
+    margin:3px;
+    padding:10px;
+  }
+  .main {
+    margin-left:0;
+    padding:18px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div>
+    <h2>KINGDOME COLLEGE HUB</h2>
+    <span>Academic Management Portal</span>
+  </div>
+  <div>ACADEMIC OFFICE</div>
+</header>
+
+<section class="login-wrapper" id="loginPage">
+  <div class="login-box">
+    <h2>Academic Staff Login</h2>
+    <p>Access the academic management system</p>
+
+    <label>Staff ID / Username</label>
+    <input type="text" id="username" placeholder="Enter your staff ID">
+
+    <label>Password</label>
+    <input type="password" id="password" placeholder="Enter your password">
+
+    <button onclick="login()">Sign In</button>
+
+    <p class="small-note">Authorized academic staff access only.</p>
+    <p><a href="index.html">Back to College Homepage</a></p>
+  </div>
+</section>
+
+<section class="dashboard" id="dashboard">
+
+  <aside class="sidebar">
+    <h3>ACADEMIC MENU</h3>
+    <button class="active" onclick="showPanel('overview',this)">Dashboard</button>
+    <button onclick="showPanel('courses',this)">Manage Courses</button>
+    <button onclick="showPanel('assignments',this)">Assignments</button>
+    <button onclick="showPanel('materials',this)">Learning Materials</button>
+    <button onclick="showPanel('submissions',this)">Student Submissions</button>
+    <button onclick="showPanel('attendance',this)">Attendance</button>
+    <button onclick="showPanel('results',this)">Examination Results</button>
+    <button onclick="showPanel('announcements',this)">Announcements</button>
+    <button onclick="logout()">Log Out</button>
+  </aside>
+
+  <main class="main">
+
+    <section id="overview" class="panel active">
+      <div class="welcome">
+        <h1>Academic Dashboard</h1>
+        <p>Welcome to Kingdome College Hub Academic Management Portal.</p>
+        <p>Manage teaching, learning and academic activities in one place.</p>
+      </div>
+
+      <div class="cards">
+        <div class="card">
+          <h3>Courses</h3>
+          <strong id="courseCount">0</strong>
+          <p class="small-note">Courses added in this session</p>
+        </div>
+        <div class="card">
+          <h3>Assignments</h3>
+          <strong id="assignmentCount">0</strong>
+          <p class="small-note">Assignments created in this session</p>
+        </div>
+        <div class="card">
+          <h3>Learning Materials</h3>
+          <strong id="materialCount">0</strong>
+          <p class="small-note">Materials selected in this session</p>
+        </div>
+        <div class="card">
+          <h3>Submissions</h3>
+          <strong>0</strong>
+          <p class="small-note">Student submissions awaiting connection</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Academic Office</h3>
+        <p>Use the menu to manage courses, assignments, learning materials and other academic activities.</p>
+      </div>
+    </section>
+
+    <section id="courses" class="panel">
+      <h2>Manage Courses</h2>
+      <p>Add courses or subjects offered by the college.</p>
+
+      <form id="courseForm">
+        <label>Course / Subject Name</label>
+        <input id="courseName" required placeholder="e.g. Anatomy">
+
+        <label>Programme / Class</label>
+        <input id="courseClass" required placeholder="e.g. Clinical Medicine Level 4">
+
+        <label>Academic Year</label>
+        <input id="courseYear" placeholder="e.g. 2026/2027">
+
+        <button type="submit">Add Course</button>
+      </form>
+
+      <h3>Added Courses</h3>
+      <div id="courseList"></div>
+    </section>
+
+    <section id="assignments" class="panel">
+      <h2>Assignments Management</h2>
+      <p>Create assignments for students.</p>
+
+      <form id="assignmentForm">
+        <label>Assignment Title</label>
+        <input id="assignmentTitle" required placeholder="Enter assignment title">
+
+        <label>Subject / Course</label>
+        <input id="assignmentSubject" required placeholder="Enter subject">
+
+        <label>Programme / Class</label>
+        <input id="assignmentClass" required placeholder="Enter class">
+
+        <label>Submission Deadline</label>
+        <input type="date" id="assignmentDate" required>
+
+        <label>Instructions</label>
+        <textarea id="assignmentInstructions" rows="4" placeholder="Enter assignment instructions"></textarea>
+
+        <label>Attach Assignment File</label>
+        <input type="file" id="assignmentFile">
+
+        <button type="submit">Create Assignment</button>
+      </form>
+
+      <h3>Created Assignments</h3>
+      <div id="assignmentList"></div>
+    </section>
+
+    <section id="materials" class="panel">
+      <h2>Learning Materials</h2>
+      <p>Prepare lecture notes and other learning resources.</p>
+
+      <form id="materialForm">
+        <label>Material Title</label>
+        <input id="materialTitle" required placeholder="e.g. Introduction to Anatomy">
+
+        <label>Subject</label>
+        <input id="materialSubject" required placeholder="Enter subject">
+
+        <label>Programme / Class</label>
+        <input id="materialClass" required placeholder="Enter class">
+
+        <label>Material Category</label>
+        <select id="materialCategory">
+          <option>Lecture Notes</option>
+          <option>Presentation Slides</option>
+          <option>Reference Materials</option>
+          <option>Past Papers</option>
+          <option>Other</option>
+        </select>
+
+        <label>Select File</label>
+        <input type="file" id="materialFile" required>
+
+        <button type="submit">Add Learning Material</button>
+      </form>
+
+      <h3>Added Materials</h3>
+      <div id="materialList"></div>
+    </section>
+
+    <section id="submissions" class="panel">
+      <h2>Student Submissions</h2>
+      <div class="item">
+        Student assignment submissions will appear here when a secure backend and student portal connection are implemented.
+      </div>
+      <p class="small-note">This demonstration cannot yet receive files from students using other devices.</p>
+    </section>
+
+    <section id="attendance" class="panel">
+      <h2>Academic Attendance</h2>
+      <p>Attendance monitoring will be connected to the student and staff systems in a later stage.</p>
+    </section>
+
+    <section id="results" class="panel">
+      <h2>Examination Results</h2>
+      <p>Examination marks, assessment records and student academic progress will be managed here in a future connected version.</p>
+    </section>
+
+    <section id="announcements" class="panel">
+      <h2>Academic Announcements</h2>
+      <form id="announcementForm">
+        <label>Announcement Title</label>
+        <input id="announcementTitle" required placeholder="Enter title">
+
+        <label>Announcement Message</label>
+        <textarea id="announcementMessage" rows="4" required placeholder="Write announcement"></textarea>
+
+        <button type="submit">Publish Announcement</button>
+      </form>
+
+      <h3>Announcements</h3>
+      <div id="announcementList"></div>
+    </section>
+
+  </main>
+</section>
+
+<footer>
+  © 2026 Kingdome College Hub | Academic Management Portal
+</footer>
+
+<script>
+let courses = 0;
+let assignments = 0;
+let materials = 0;
+
+function login() {
+  const username = document.getElementById("username").value.trim();
+  const password = document.getElementById("password").value.trim();
+
+  if (!username || !password) {
+    alert("Please enter your staff ID and password.");
+    return;
+  }
+
+  document.getElementById("loginPage").style.display = "none";
+  document.getElementById("dashboard").style.display = "block";
+}
+
+function logout() {
+  document.getElementById("dashboard").style.display = "none";
+  document.getElementById("loginPage").style.display = "flex";
+  document.getElementById("username").value = "";
+  document.getElementById("password").value = "";
+}
+
+function showPanel(id, button) {
+  document.querySelectorAll(".panel").forEach(panel => {
+    panel.classList.remove("active");
+  });
+
+  document.getElementById(id).classList.add("active");
+
+  document.querySelectorAll(".sidebar button").forEach(btn => {
+    btn.classList.remove("active");
+  });
+
+  button.classList.add("active");
+}
+
+document.getElementById("courseForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const name = document.getElementById("courseName").value;
+  const className = document.getElementById("courseClass").value;
+  const year = document.getElementById("courseYear").value;
+
+  const item = document.createElement("div");
+  item.className = "item";
+  item.textContent = name + " | " + className + " | " + year;
+
+  document.getElementById("courseList").appendChild(item);
+
+  courses++;
+  document.getElementById("courseCount").textContent = courses;
+  this.reset();
+});
+
+document.getElementById("assignmentForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const title = document.getElementById("assignmentTitle").value;
+  const subject = document.getElementById("assignmentSubject").value;
+  const className = document.getElementById("assignmentClass").value;
+  const date = document.getElementById("assignmentDate").value;
+  const file = document.getElementById("assignmentFile").files[0];
+
+  const item = document.createElement("div");
+  item.className = "item";
+  item.textContent = title + " | " + subject + " | " + className +
+    " | Deadline: " + date + (file ? " | Selected file: " + file.name : "");
+
+  document.getElementById("assignmentList").appendChild(item);
+
+  assignments++;
+  document.getElementById("assignmentCount").textContent = assignments;
+  this.reset();
+});
+
+document.getElementById("materialForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const title = document.getElementById("materialTitle").value;
+  const subject = document.getElementById("materialSubject").value;
+  const className = document.getElementById("materialClass").value;
+  const category = document.getElementById("materialCategory").value;
+  const file = document.getElementById("materialFile").files[0];
+
+  if (!file) return;
+
+  const item = document.createElement("div");
+  item.className = "item";
+  item.textContent = title + " | " + subject + " | " + className +
+    " | " + category + " | Selected file: " + file.name;
+
+  document.getElementById("materialList").appendChild(item);
+
+  materials++;
+  document.getElementById("materialCount").textContent = materials;
+  this.reset();
+});
+
+document.getElementById("announcementForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const title = document.getElementById("announcementTitle").value;
+  const message = document.getElementById("announcementMessage").value;
+
+  const item = document.createElement("div");
+  item.className = "item";
+
+  const heading = document.createElement("strong");
+  heading.textContent = title;
+
+  const paragraph = document.createElement("p");
+  paragraph.textContent = message;
+
+  item.appendChild(heading);
+  item.appendChild(paragraph);
+
+  document.getElementById("announcementList").appendChild(item);
+  this.reset();
+});
+</script>
+
+</body>
+</html>
