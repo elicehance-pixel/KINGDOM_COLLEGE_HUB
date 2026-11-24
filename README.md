@@ -1,2 +1,2 @@
 # KINGDOM_COLLEGE_HUB
-Profession hub  for a health science college
+Professional hub  for a health science college
