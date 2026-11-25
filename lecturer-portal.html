@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="KICOHAS Lecturer Portal">
+  <title>KICOHAS | Lecturer Portal</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="lecturer-style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+</head>
+
+<body>
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="brand-mark">K</div>
+      <div>
+        <strong>KICOHAS</strong>
+        <span>LECTURER PORTAL</span>
+      </div>
+      <button class="sidebar-close" id="sidebarClose" aria-label="Close menu">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <div class="profile-mini">
+      <div class="avatar">JM</div>
+      <div>
+        <strong>Dr. John Mwakalinga</strong>
+        <span>Lecturer · Health Sciences</span>
+      </div>
+    </div>
+
+    <nav class="navigation" id="navigation">
+      <p class="nav-label">WORKSPACE</p>
+
+      <a href="#" class="nav-link active" data-page="dashboard"><i class="fa-solid fa-gauge-high"></i>Dashboard</a>
+      <a href="#" class="nav-link" data-page="profile"><i class="fa-regular fa-user"></i>My Profile</a>
+      <a href="#" class="nav-link" data-page="courses"><i class="fa-solid fa-book-open"></i>My Courses & Subjects</a>
+      <a href="#" class="nav-link" data-page="classes"><i class="fa-solid fa-users"></i>My Classes</a>
+      <a href="#" class="nav-link" data-page="students"><i class="fa-solid fa-user-graduate"></i>Student Lists</a>
+      <a href="#" class="nav-link" data-page="attendance"><i class="fa-regular fa-calendar-check"></i>Attendance Management</a>
+      <a href="#" class="nav-link" data-page="assignments"><i class="fa-solid fa-clipboard-list"></i>Assignment Management</a>
+      <a href="#" class="nav-link" data-page="cat"><i class="fa-solid fa-pen-to-square"></i>CAT & Continuous Assessment</a>
+      <a href="#" class="nav-link" data-page="examinations"><i class="fa-solid fa-file-circle-check"></i>Examination Management</a>
+      <a href="#" class="nav-link" data-page="marks"><i class="fa-solid fa-table"></i>Marks Entry</a>
+      <a href="#" class="nav-link" data-page="submission"><i class="fa-solid fa-paper-plane"></i>Results Submission</a>
+      <a href="#" class="nav-link" data-page="timetable"><i class="fa-regular fa-clock"></i>My Timetable</a>
+      <a href="#" class="nav-link" data-page="materials"><i class="fa-solid fa-folder-open"></i>Teaching Materials</a>
+      <a href="#" class="nav-link" data-page="notifications"><i class="fa-regular fa-bell"></i>Academic Notifications <span class="nav-count">3</span></a>
+      <a href="#" class="nav-link" data-page="reports"><i class="fa-solid fa-chart-column"></i>Reports</a>
+
+      <p class="nav-label nav-label-bottom">ACCOUNT</p>
+      <a href="#" class="nav-link" data-page="settings"><i class="fa-solid fa-gear"></i>Settings</a>
+      <a href="#" class="nav-link" data-page="logout"><i class="fa-solid fa-arrow-right-from-bracket"></i>Logout</a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <span class="status-dot"></span> Academic Year 2026/2027
+    </div>
+  </aside>
+
+  <main class="main-area">
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="icon-button menu-toggle" id="menuToggle" aria-label="Open menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <div>
+          <p class="eyebrow">KINGDOM COLLEGE OF HEALTH AND ALLIED SCIENCES</p>
+          <h1 id="pageTitle">Lecturer Dashboard</h1>
+        </div>
+      </div>
+
+      <div class="topbar-actions">
+        <span class="academic-year">
+          <i class="fa-regular fa-calendar"></i> 2026/2027
+        </span>
+
+        <button class="icon-button notification-button" data-goto="notifications" aria-label="Notifications">
+          <i class="fa-regular fa-bell"></i><b></b>
+        </button>
+
+        <div class="top-user">
+          <div class="avatar avatar-small">JM</div>
+          <div>
+            <strong>Dr. John M.</strong>
+            <span>Lecturer</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="page-content" id="pageContainer"></section>
+
+    <footer class="main-footer">
+      © 2026 Kingdom College of Health and Allied Sciences (KICOHAS)
+      <span>Healing Through Knowledge</span>
+    </footer>
+  </main>
+
+  <div class="modal-backdrop" id="modalBackdrop">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-head">
+        <div>
+          <p class="eyebrow">KICOHAS LECTURER PORTAL</p>
+          <h2 id="modalTitle">Confirm action</h2>
+        </div>
+        <button class="icon-button" id="modalClose" aria-label="Close">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div id="modalBody"></div>
+      <div class="modal-actions" id="modalActions"></div>
+    </div>
+  </div>
+
+  <div class="toast-region" id="toastRegion" aria-live="polite"></div>
+
+  <script src="lecturer-script.js"></script>
+</body>
+</html>
